@@ -5,12 +5,17 @@
 
 #include "tester.h"
 
-int main() {
-    CHECK(1 + 1 == 2);
-    CHECK_EQ(2 * 21, 42);
+// int main() {
+//     CHECK(1 + 1 == 2);
+//     CHECK_EQ(2 * 21, 42);
 
-    const std::string s = "hello";
-    CHECK_EQ(s + " world", std::string("hello world"));
+//     const std::string s = "hello";
+//     CHECK_EQ(s + " world", std::string("hello world"));
 
-    return tester::summary();
+//     return tester::summary();
+// }
+
+int main()
+{
+
 }

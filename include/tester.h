@@ -29,17 +29,17 @@ void report_eq(const Actual& a, const Expected& e, const char* expr,
         sa << a;
         se << e;
         ++failures;
-        std::printf("  [FAIL] %s:%d  %s\n      实际: %s\n      期望: %s\n",
+        std::printf("  [FAIL] %s:%d  %s\n      actual: %s\n      expected: %s\n",
                     file, line, expr, sa.str().c_str(), se.str().c_str());
     }
 }
 
 inline int summary() {
     if (failures == 0) {
-        std::printf("[PASS] %d 项检查全部通过\n", checks);
+        std::printf("[PASS] %d checks passed\n", checks);
         return 0;
     }
-    std::printf("[FAIL] %d/%d 项检查未通过\n", failures, checks);
+    std::printf("[FAIL] %d/%d checks failed\n", failures, checks);
     return 1;
 }
 
