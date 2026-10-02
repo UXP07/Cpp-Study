@@ -38,17 +38,5 @@ public:
 
 int main() {
 
-    Shallow s1(10);
-    Shallow s2 = s1;
-
-    printf("%p\n",s1.data);
-    printf("%p\n",s2.data);
-    printf("%d\n",*s1.data);
-    printf("%d\n",*s2.data);
-
-    *(s2.data) = 20;
-
-    printf("%d\n",*s1.data);
-    printf("%d\n", s2.getdata());
     return 0;
 }
