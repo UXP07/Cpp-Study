@@ -10,7 +10,7 @@ description: 判题与循环整改。当用户说"判题""检查""验收""我做
 ## 1. 定位练习
 
 - 用户指定练习号 → 用之；未指定 → 取最近出题或最近修改的练习
-- 读取三件套：`exercises/NN_topic/REQUIREMENT.md`、`.claude/answers/NN_topic.md`（判题参照）、用户代码（`exercises/NN_topic/` 下全部 .cpp/.h）
+- 读取三件套：`exercises/NN_topic/REQUIREMENT.md`、`answers/NN_topic.md`（判题参照）、用户代码（`exercises/NN_topic/` 下全部 .cpp/.h）
 - 缺需求文档的旧练习（骨架式）→ 按旧规则验收（断言全 PASS + review）
 
 ## 2. 机器验证（先跑再评，度量不猜测）

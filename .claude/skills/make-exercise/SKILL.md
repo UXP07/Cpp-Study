@@ -1,6 +1,6 @@
 ---
 name: make-exercise
-description: 需求式出题。当用户说"按 N 号出 M 道题""出题""出复习题"时使用。产出需求文档（用户看）+ 专家标准答案（判题参照，存 .claude/answers/，用户不提前看）。
+description: 需求式出题。当用户说"按 N 号出 M 道题""出题""出复习题"时使用。产出需求文档（用户看）+ 专家标准答案（判题参照，存 answers/，用户不提前看）。
 ---
 
 # make-exercise — 需求式出题工作流
@@ -12,7 +12,7 @@ description: 需求式出题。当用户说"按 N 号出 M 道题""出题""出�
 - **两套编号**：知识点号（学什么）≠ 练习号（exercises/NN）
 - 每道题产出两个文件：
   - `exercises/NN_topic/REQUIREMENT.md` —— 需求文档，**用户唯一应看的文件**
-  - `.claude/answers/NN_topic.md` —— 标准答案，**判题参照，用户不应提前查看**
+  - `answers/NN_topic.md` —— 标准答案，**判题参照，用户不应提前查看**
 - 用户自己写 `exercises/NN_topic/main.cpp`（可加其他文件）；新目录被 CMake 自动发现
 
 ## 1. 出题流程（"按 N 号出 M 道题"）
@@ -26,7 +26,7 @@ description: 需求式出题。当用户说"按 N 号出 M 道题""出题""出�
    - 附 2–4 道简答题 SR1、SR2…（概念理解与辨析）
    - 视知识点附加约束（如"本题禁止使用 std::vector"）
 3. 写 `REQUIREMENT.md`（模板见下）
-4. 写标准答案 `.claude/answers/NN_topic.md`（模板见下），以专家视角完成：
+4. 写标准答案 `answers/NN_topic.md`（模板见下），以专家视角完成：
    - 完整**可编译可运行**的参考实现
    - 评分要点 = 判题依据
 5. 出题后将 knowledge.md 该行状态改为 `学习中`
@@ -56,7 +56,7 @@ SR2. …
 - （禁止事项 / 环境说明）
 ```
 
-## 3. 标准答案模板（.claude/answers/NN_topic.md）
+## 3. 标准答案模板（answers/NN_topic.md）
 
 ```markdown
 # 练习 NN 标准答案 —— 主题
