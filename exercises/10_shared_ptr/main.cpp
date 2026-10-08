@@ -48,39 +48,66 @@ private:
     int v_;
     inline static int live_ = 0;
 public:
-    explicit Widget(int v) : v_(v) {live_++;}
-    ~Widget() { live_--; }
-    Widget(const Widget& other) = delete;
-    Widget& operator=(const Widget& other) = delete;
+    explicit Widget(int value) : v_(value) {
+        live_++;
+    }
+
+    Widget(const Widget&) = delete;
+    Widget& operator=(const Widget&) = delete;
+
     int value() const { return v_; }
     static int live() { return live_; }
+
+    ~Widget() { live_--; }
+
 };
+
 
 class Node{
 private:
+    inline static int live_ = 0;
     std::shared_ptr<Node> next_;
     std::weak_ptr<Node> prev_;
-    inline static int live_ = 0;
 public:
-    Node() { live_++; }
-    ~Node() { live_--; }
+    Node() {live_++; }
+    ~Node() {live_--; }
     static int live() { return live_; }
-
-    void set_next(std::shared_ptr<Node> n) { next_ = std::move(n); }
-    void set_prev(std::weak_ptr<Node> p) { prev_ = std::move(p); }
+    void set_next(std::shared_ptr<Node> n) {
+        next_ = std::move(n);
+    }
+    void set_prev(std::weak_ptr<Node> p) {
+        prev_ = std::move(p);
+    }
 
     std::shared_ptr<Node> next() const { return next_; }
     std::shared_ptr<Node> prev() const { return prev_.lock(); }
 };
 
 template <class T>
-class Shared{
+class Shared {
+private:
+    T* ptr_ = nullptr;
+    long* count_ = nullptr;
+
+    void release() {
+        if(ptr_ == nullptr) return;
+        if(--*count_ == 0)
+        {
+            delete ptr_;
+            delete count_;
+        }
+        ptr_ = nullptr;
+        count_ = nullptr;
+    }
+
 public:
     Shared() = default;
-    explicit Shared(T* p) : ptr_(p), count_(p!=nullptr ? new long(1) : nullptr) {}
+    explicit Shared(T* p) : ptr_(p), count_(p != nullptr ? new long(1) : nullptr) {}
     Shared(const Shared& other) : ptr_(other.ptr_), count_(other.count_) {
         if(count_ != nullptr)
+        {
             ++*count_;
+        }
     }
 
     Shared(Shared&& other) noexcept : ptr_(other.ptr_), count_(other.count_) {
@@ -105,37 +132,20 @@ public:
             release();
             ptr_ = other.ptr_;
             count_ = other.count_;
-
             other.ptr_ = nullptr;
             other.count_ = nullptr;
-
         }
         return *this;
     }
 
     ~Shared() { release(); }
 
+    long use_count() const { return count_==nullptr ? 0 : *count_; }
     T* get() const { return ptr_; }
-    long use_count() const { return count_ == nullptr ? 0 : *count_; }
     T& operator*() const { return *ptr_; }
     T* operator->() const { return ptr_; }
-
-
-private:
-    T* ptr_ = nullptr;
-    long* count_ = nullptr;
-    
-    void release(){
-        if(count_ == nullptr) return;
-        if(--*count_ == 0)
-        {
-            delete count_;
-            delete ptr_;
-        }
-        ptr_ = nullptr;
-        count_ = nullptr;
-    }
 };
+
 
 
 int main()
