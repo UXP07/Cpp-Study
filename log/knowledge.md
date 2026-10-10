@@ -15,17 +15,17 @@
 | 1 | RAII 与资源管理 | 构造/析构与资源生命周期、栈展开、异常安全 | 能实现 RAII 资源类（文件句柄/锁守卫），异常路径不泄漏；能解释栈展开时机 | 已学习（2026-10-04） |
 | 2 | 移动语义与五法则 | move 构造/赋值、noexcept、std::move 本质、被移动对象状态 | 能手写可移动类；能解释 std::move 只是类型转换并不移动任何东西 | 已学习（2026-10-08） |
 | 3 | 智能指针 | unique/shared/weak 所有权模型、控制块、循环引用 | 能选用正确的智能指针建模所有权；能手写简化版引用计数 shared_ptr | 已学习（2026-10-08） |
-| 4 | 模板 | 函数/类模板、全特化与偏特化、实参推断、代码膨胀 | 能写泛型容器/算法模板并正确特化；能推断给定调用的模板参数 | 未学习 |
-| 5 | Lambda 与闭包 | 按值/引用捕获、捕获悬垂陷阱、泛型 lambda、闭包类型 | 能正确选择捕获方式并指出悬垂风险；能用 lambda 定制 STL 算法行为 | 未学习 |
-| 6 | constexpr 与编译期计算 | constexpr 函数/变量、if constexpr、static_assert | 能把运行期函数改写为 constexpr 并用 static_assert 编译期验证 | 未学习 |
-| 7 | C++17 工具库 | optional、variant+visit、string_view 及其悬垂陷阱 | 能用三者替代裸指针/联合/字符串拷贝，并能指出各自误用场景 | 未学习 |
+| 4 | 模板 | 函数/类模板、全特化与偏特化、实参推断、代码膨胀 | 能写泛型容器/算法模板并正确特化；能推断给定调用的模板参数 | 学习中 |
+| 5 | Lambda 与闭包 | 按值/引用捕获、捕获悬垂陷阱、泛型 lambda、闭包类型 | 能正确选择捕获方式并指出悬垂风险；能用 lambda 定制 STL 算法行为 | 已学习（2026-10-10） |
+| 6 | constexpr 与编译期计算 | constexpr 函数/变量、if constexpr、static_assert | 能把运行期函数改写为 constexpr 并用 static_assert 编译期验证 | 已学习（2026-10-10） |
+| 7 | C++17 工具库 | optional、variant+visit、string_view 及其悬垂陷阱 | 能用三者替代裸指针/联合/字符串拷贝，并能指出各自误用场景 | 已学习（2026-10-10） |
 | 8 | C++20 概览〔了解〕 | concepts 解决的问题、coroutines 适用场景 | 能口述 concepts 对模板约束的改进与 coroutine 两阶段执行模型 | 未学习 |
 
 ## 波次 2 · 并发编程（计划阶段 1 中）
 
 | # | 知识点 | 学习内容 | 验收标准 | 状态 |
 |---|--------|----------|----------|------|
-| 9 | std::thread 基础 | 创建/join/detach、参数传递陷阱、thread_local | 能正确启动线程并安全汇合；能解释未 join 就析构的后果 | 未学习 |
+| 9 | std::thread 基础 | 创建/join/detach、参数传递陷阱、thread_local | 能正确启动线程并安全汇合；能解释未 join 就析构的后果 | 学习中 |
 | 10 | mutex 与锁 | lock_guard/unique_lock 选型、多锁顺序与死锁、call_once | 能用 RAII 锁消除手动 unlock；能构造并修复一个死锁示例 | 未学习 |
 | 11 | 条件变量 | wait 带谓词、虚假唤醒、notify 时序、丢失唤醒 | 能实现线程安全队列；能解释为什么必须用循环/谓词等待 | 未学习 |
 | 12 | atomic 与内存序 | 六种内存序、happens-before、acquire/release 配对 | 能解释各内存序语义；能用 release/acquire 写正确的就绪标志 | 未学习 |
